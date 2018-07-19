@@ -1,0 +1,20 @@
+/* Styles go here */
+
+.button {
+        color:black;
+        display: inline-block;
+        padding: 3px 5px;
+        border: 1px solid #000;
+        background: #eee;
+    }
+a {
+    color: grey;
+    text-decoration: none;
+}
+span {
+  color:red;
+}
+.label{
+  color:black;
+}
+  

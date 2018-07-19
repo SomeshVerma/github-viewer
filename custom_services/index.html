@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="githubViewer">
+
+<head>
+  <link data-require="bootstrap-css@*" data-semver="4.1.1" rel="stylesheet" />
+  <link data-require="bootstrap@*" data-semver="4.1.1" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+  <script data-require="angular.js@1.0.x" src="https://code.angularjs.org/1.0.8/angular.js" data-semver="1.0.8"></script>
+  <link rel="stylesheet" href="style.css" />
+  
+  <script src="script.js"></script>
+  
+  <script src="github.js"></script>
+</head>
+
+<body ng-controller="MainController" ng-init="show= false;key='stars'">
+  <div class="col-lg-12">
+    <h1>{{message}}</h1>
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-4">
+        <div style="float : left; padding-right:4px">
+          <form name="searchUser" ng-submit="search(username)" class="form-group">
+            <input type="text" required="" placeholder="Username to find" ng-model="username" />
+            <input type="Submit" value="Search" />
+          </form>
+        </div>
+
+        <div style="float : left; padding-left:4px" ng-show="show">
+          <button type="button" onclick="window.open('{{user.html_url}}', '_blank');">View Profile</button>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="!show">
+      <div class="col-lg-12">
+        {{error}}</div>
+    </div>
+    <div class="row" ng-show="show">
+      <div class="col-lg-12">
+        <h2>{{user.login}}</h2>
+        <img ng-src="{{user.avatar_url}}" alt="{{user.login}}" />
+      </div>
+    </div>
+    <div ng-show=show>
+      <span class="label"><b>Ordered By: </b><span>{{orderByField}}</span>, <b>Reverse Sort:</b> <span>{{reverseSort}}</span></span>
+      <br>
+      <br>
+      <table class="table-responsive table table-condensed">
+        <thead>
+          <tr>
+            <th>
+              <a href="#" ng-click="orderByField='name'; reverseSort = !reverseSort">
+            Name &nbsp;<span ng-show="orderByField == 'name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          </a>
+            </th>
+            <th>
+              <a href="#" ng-click="orderByField='stargazers_count'; reverseSort = !reverseSort">
+            Stars &nbsp;<span ng-show="orderByField == 'stargazers_count'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          </a>
+            </th>
+            <th>
+              <a href="#" ng-click="orderByField='language'; reverseSort = !reverseSort">
+              Language &nbsp;<span ng-show="orderByField == 'language'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          </a>
+            </th>
+          </tr>
+        </thead>
+        <tr ng-repeat="repo in repos | orderBy:orderByField:reverseSort">
+          <td>{{repo.name}}</td>
+          <td>{{repo.stargazers_count}}</td>
+          <td>{{repo.language}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
