@@ -1,0 +1,27 @@
+<div class="col-sm-12 col-md-12 col-lg-12">
+   {{error}}
+  <div class="row" ng-show="rep">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div class="row" >    <h3>Repository: &nbsp;<i>{{rep.name}}</i> </h3><br></div>
+                               <div class="row" >   <h5>Issues:</h5> &nbsp;{{rep.open_issues_count}}</div>
+    </div>
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                              <div class="row" >  <a href="#/main">Back to Search</a></div>
+                               <div class="row">  <a href="#/user/{{rep.owner.login}}" ng-show="rep">Back to {{rep.owner.login}}</a></div>
+            </div>
+
+ 
+    </div>
+    <div class="row" ng-show="rep">
+      <table class="table-responsive table table-condensed">
+        <thead> Contributors </thead>
+        <tr ng-repeat="user in rep.collaborators">
+          <td>{{user.login}}</td>
+          <td><img src="{{user.avatar_url}}" alt="{{user.login}}" height="100" width="100"></td>
+          <td><a href="{{user.html_url}}">View Profile</a>
+        </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+

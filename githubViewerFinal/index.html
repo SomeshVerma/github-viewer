@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="githubViewer">
+
+  <head>
+    <link data-require="bootstrap-css@*" data-semver="4.1.1" rel="stylesheet" />
+    <link data-require="bootstrap@*" data-semver="4.1.1" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.12/angular.js" data-semver="1.4.9"></script>
+     <script data-require="angular-route@1.4.6" src="https://code.angularjs.org/1.4.6/angular-route.js" data-semver="1.4.6"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js"></script>
+    <script src="MainController.js"></script>
+        <script src="UserController.js"></script>
+        <script src="RepoController.js"></script>
+            <script src="github.js"></script>
+  </head>
+
+  <body>
+    <center><h1>Github Viewer</h1>
+    <div ng-view></div></center>
+  </body>
+
+</html>

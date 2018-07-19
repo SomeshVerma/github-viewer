@@ -1,0 +1,51 @@
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    {{error}}
+  <div class= "row" >
+    <div class="col-sm-4 col-md-6 col-lg-6" style="float : left" ng-show="user">
+       <h2>{{user.login}}</h2> </div>
+         <div class="col-sm-4 col-md-6 col-lg-6" style="float : left" >
+          <a href="#/main">Back to Search Page</a>
+        </div>
+  </div>
+  <div class="row" ng-show="user">
+      <div class="col-sm-6 col-md-6 col-lg-6">
+      <img ng-src="{{user.avatar_url}}" alt="{{user.login}}" height="100" width="100" /></div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <div class= "row" style="float:left; margin:auto">
+         <button type="button" onclick="viewProfile()">View Profile</button>
+      </div>
+      <div class= "row" style="float:left ; margin:auto">
+      <b>Order:</b>
+      <select ng-model="reposSortOrder">
+        <option value="-stargazers_count">Stars</option>
+        <option value="+name">Name</option>
+        <option value="+language">Language</option>
+      </select>
+      </div>
+      </div>
+    </div>
+    <div class="row" ng-show="user">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+      <table class="table-responsive table table-condensed">
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Stars
+            </th>
+            <th>
+              Language
+            </th>
+          </tr>
+        </thead>
+        <tr ng-repeat="repo in repos | orderBy : reposSortOrder">
+          <td>          <a href="#/repo/{{user.login}}/{{repo.name}}">{{repo.name}}</a></td>
+          <td>{{repo.stargazers_count}}</td>
+          <td>{{repo.language}}</td>
+        </tr>
+      </table>
+	  </div>
+    </div>
+    </div>
